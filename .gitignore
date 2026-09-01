@@ -1,0 +1,7 @@
+# PyTorch JIT extension build artifacts
+/build/
+
+# Python/JIT artifacts used by the official harness adapter
+__pycache__/
+*.py[cod]
+/.venv/

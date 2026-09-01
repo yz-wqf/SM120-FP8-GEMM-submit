@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="930" viewBox="0 0 1200 930" role="img" aria-labelledby="title desc">
+  <title id="title">M equals 9 CTA warp to output tile ownership</title>
+  <desc id="desc">Warp zero produces TMA loads. Consumer warp q plus one owns one sixteen by eight accumulator band and stores its first nine rows to eight output columns.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#172554"/></linearGradient>
+    <linearGradient id="panel" x2="0" y2="1"><stop stop-color="#14233b"/><stop offset="1" stop-color="#0e1b30"/></linearGradient>
+    <linearGradient id="producer" x2="1"><stop stop-color="#0284c7"/><stop offset="1" stop-color="#2563eb"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-15%" width="120%" height="135%"><feDropShadow dy="5" stdDeviation="6" flood-opacity=".32"/></filter>
+    <style>
+      .title{font:700 29px Inter,Segoe UI,sans-serif;fill:#f8fbff}.subtitle{font:500 15px Inter,Segoe UI,sans-serif;fill:#b9c8df}
+      .heading{font:700 17px Inter,Segoe UI,sans-serif;fill:#e5efff}.label{font:600 12.5px Inter,Segoe UI,sans-serif;fill:#f8fbff}
+      .boxlabel{font:600 11.8px Inter,Segoe UI,sans-serif;fill:#f8fbff}.small{font:500 11.3px Inter,Segoe UI,sans-serif;fill:#c8d6eb}
+      .tiny{font:600 10.3px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#eef5ff}
+      .mono{font:600 12.3px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#e6efff}
+      .panel{fill:url(#panel);stroke:#405a7b;stroke-width:1.2}.grid{stroke:#d8e5f7;stroke-opacity:.30;stroke-width:1}
+      .strong{stroke-opacity:.65;stroke-width:1.5}
+    </style>
+  </defs>
+  <rect width="1200" height="930" rx="24" fill="url(#bg)"/>
+  <text x="42" y="48" class="title">M = 9 CTA-level warp ownership</text>
+  <text x="42" y="75" class="subtitle">BN64 example · one producer warp + eight consumers · each consumer owns one M16×N8 accumulator band</text>
+
+  <rect x="35" y="98" width="1130" height="130" rx="16" class="panel" filter="url(#shadow)"/>
+  <text x="55" y="127" class="heading">Physical warps in the CTA</text>
+  <rect x="55" y="146" width="118" height="48" rx="9" fill="url(#producer)"/>
+  <text x="114" y="166" text-anchor="middle" class="label">Warp 0</text>
+  <text x="114" y="184" text-anchor="middle" class="small">TMA only</text>
+  <rect x="188" y="146" width="108" height="48" rx="9" fill="#db2777"/>
+  <text x="242" y="166" text-anchor="middle" class="boxlabel">Warp 1 / C0</text>
+  <text x="242" y="184" text-anchor="middle" class="small">tile q=0</text>
+  <rect x="306" y="146" width="108" height="48" rx="9" fill="#a855f7"/>
+  <text x="360" y="166" text-anchor="middle" class="boxlabel">Warp 2 / C1</text>
+  <text x="360" y="184" text-anchor="middle" class="small">tile q=1</text>
+  <rect x="424" y="146" width="108" height="48" rx="9" fill="#4f46e5"/>
+  <text x="478" y="166" text-anchor="middle" class="boxlabel">Warp 3 / C2</text>
+  <text x="478" y="184" text-anchor="middle" class="small">tile q=2</text>
+  <rect x="542" y="146" width="108" height="48" rx="9" fill="#0891b2"/>
+  <text x="596" y="166" text-anchor="middle" class="boxlabel">Warp 4 / C3</text>
+  <text x="596" y="184" text-anchor="middle" class="small">tile q=3</text>
+  <rect x="660" y="146" width="108" height="48" rx="9" fill="#059669"/>
+  <text x="714" y="166" text-anchor="middle" class="boxlabel">Warp 5 / C4</text>
+  <text x="714" y="184" text-anchor="middle" class="small">tile q=4</text>
+  <rect x="778" y="146" width="108" height="48" rx="9" fill="#16a34a"/>
+  <text x="832" y="166" text-anchor="middle" class="boxlabel">Warp 6 / C5</text>
+  <text x="832" y="184" text-anchor="middle" class="small">tile q=5</text>
+  <rect x="896" y="146" width="108" height="48" rx="9" fill="#ca8a04"/>
+  <text x="950" y="166" text-anchor="middle" class="boxlabel">Warp 7 / C6</text>
+  <text x="950" y="184" text-anchor="middle" class="small">tile q=6</text>
+  <rect x="1014" y="146" width="108" height="48" rx="9" fill="#ea580c"/>
+  <text x="1068" y="166" text-anchor="middle" class="boxlabel">Warp 8 / C7</text>
+  <text x="1068" y="184" text-anchor="middle" class="small">tile q=7</text>
+  <text x="55" y="216" class="small">Warp 0 owns no output elements. For every other physical warp: consumer index q = warp_id − 1.</text>
+
+  <rect x="35" y="246" width="1130" height="530" rx="16" class="panel" filter="url(#shadow)"/>
+  <text x="55" y="276" class="heading">CTA accumulator tile D[16,BN] = D[16,64]</text>
+  <text x="55" y="302" class="small">Each colored vertical band is the complete register tile computed by one consumer warp.</text>
+  <text x="175" y="334" text-anchor="middle" class="label">Warp 1 / C0</text>
+  <text x="175" y="352" text-anchor="middle" class="tiny">N 0…7</text>
+  <text x="295" y="334" text-anchor="middle" class="label">Warp 2 / C1</text>
+  <text x="295" y="352" text-anchor="middle" class="tiny">N 8…15</text>
+  <text x="415" y="334" text-anchor="middle" class="label">Warp 3 / C2</text>
+  <text x="415" y="352" text-anchor="middle" class="tiny">N 16…23</text>
+  <text x="535" y="334" text-anchor="middle" class="label">Warp 4 / C3</text>
+  <text x="535" y="352" text-anchor="middle" class="tiny">N 24…31</text>
+  <text x="655" y="334" text-anchor="middle" class="label">Warp 5 / C4</text>
+  <text x="655" y="352" text-anchor="middle" class="tiny">N 32…39</text>
+  <text x="775" y="334" text-anchor="middle" class="label">Warp 6 / C5</text>
+  <text x="775" y="352" text-anchor="middle" class="tiny">N 40…47</text>
+  <text x="895" y="334" text-anchor="middle" class="label">Warp 7 / C6</text>
+  <text x="895" y="352" text-anchor="middle" class="tiny">N 48…55</text>
+  <text x="1015" y="334" text-anchor="middle" class="label">Warp 8 / C7</text>
+  <text x="1015" y="352" text-anchor="middle" class="tiny">N 56…63</text>
+  <rect x="115" y="365" width="120" height="320" fill="#db2777" opacity=".82"/>
+  <rect x="235" y="365" width="120" height="320" fill="#a855f7" opacity=".82"/>
+  <rect x="355" y="365" width="120" height="320" fill="#4f46e5" opacity=".82"/>
+  <rect x="475" y="365" width="120" height="320" fill="#0891b2" opacity=".82"/>
+  <rect x="595" y="365" width="120" height="320" fill="#059669" opacity=".82"/>
+  <rect x="715" y="365" width="120" height="320" fill="#16a34a" opacity=".82"/>
+  <rect x="835" y="365" width="120" height="320" fill="#ca8a04" opacity=".82"/>
+  <rect x="955" y="365" width="120" height="320" fill="#ea580c" opacity=".82"/>
+  <path d="M115 385h960" class="grid"/>
+  <path d="M115 405h960" class="grid"/>
+  <path d="M115 425h960" class="grid"/>
+  <path d="M115 445h960" class="grid"/>
+  <path d="M115 465h960" class="grid"/>
+  <path d="M115 485h960" class="grid"/>
+  <path d="M115 505h960" class="grid"/>
+  <path d="M115 525h960" class="grid"/>
+  <path d="M115 545h960" class="grid"/>
+  <path d="M115 565h960" class="grid"/>
+  <path d="M115 585h960" class="grid"/>
+  <path d="M115 605h960" class="grid"/>
+  <path d="M115 625h960" class="grid"/>
+  <path d="M115 645h960" class="grid"/>
+  <path d="M115 665h960" class="grid"/>
+  <path d="M235 365v320" class="grid strong"/>
+  <path d="M355 365v320" class="grid strong"/>
+  <path d="M475 365v320" class="grid strong"/>
+  <path d="M595 365v320" class="grid strong"/>
+  <path d="M715 365v320" class="grid strong"/>
+  <path d="M835 365v320" class="grid strong"/>
+  <path d="M955 365v320" class="grid strong"/>
+  <text x="175" y="458" text-anchor="middle" class="tiny">D0[16,8]</text>
+  <text x="295" y="458" text-anchor="middle" class="tiny">D1[16,8]</text>
+  <text x="415" y="458" text-anchor="middle" class="tiny">D2[16,8]</text>
+  <text x="535" y="458" text-anchor="middle" class="tiny">D3[16,8]</text>
+  <text x="655" y="458" text-anchor="middle" class="tiny">D4[16,8]</text>
+  <text x="775" y="458" text-anchor="middle" class="tiny">D5[16,8]</text>
+  <text x="895" y="458" text-anchor="middle" class="tiny">D6[16,8]</text>
+  <text x="1015" y="458" text-anchor="middle" class="tiny">D7[16,8]</text>
+
+  <rect x="115" y="545" width="960" height="140" fill="#111827" opacity=".78"/>
+  <path d="M115 545h960" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="8 5"/>
+  <text x="595" y="590" text-anchor="middle" class="heading">rows 9…15: computed from zero-filled X padding, then discarded</text>
+  <text x="595" y="620" text-anchor="middle" class="small">The warp owns these accumulators, but the epilogue predicate row &lt; M prevents stores.</text>
+  <text x="91" y="455" text-anchor="middle" transform="rotate(-90 91 455)" class="mono">rows 0…8 stored</text>
+  <text x="91" y="615" text-anchor="middle" transform="rotate(-90 91 615)" class="mono">padding</text>
+  <text x="595" y="714" text-anchor="middle" class="mono">BN64 = 8 consumer tiles × N8 columns</text>
+
+  <text x="55" y="747" class="mono">n_base(q) = blockIdx.x·BN + 8q</text>
+  <text x="430" y="747" class="mono">Wq = W[n_base:n_base+8, 0:K]</text>
+  <text x="835" y="747" class="mono">store Y[0:9, n_base:n_base+8]</text>
+
+  <rect x="35" y="798" width="1130" height="108" rx="16" class="panel"/>
+  <text x="55" y="828" class="heading">Per-consumer flow</text>
+  <text x="55" y="856" class="mono">Wq[N8,K] + shared X[M16,K]  →  repeated MMA m16n8k32  →  Dq[M16,N8]  →  store M9×N8</text>
+  <text x="55" y="884" class="small">BN32: warp 0 + consumers C0…C3 = 5 warps / 160 threads</text>
+  <text x="590" y="884" class="small">BN64: warp 0 + consumers C0…C7 = 9 warps / 288 threads</text>
+</svg>

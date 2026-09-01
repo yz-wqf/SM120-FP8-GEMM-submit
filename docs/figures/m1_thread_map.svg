@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="700" viewBox="0 0 1160 700" role="img" aria-labelledby="title desc">
+  <title id="title">M equals 1 scalar kernel mapping</title>
+  <desc id="desc">The CTA has one four-warp producer group and one four-warp consumer group. Consumer thread t owns column t for BN 128 and columns t and t plus 128 for BN 256.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#14213a"/></linearGradient>
+    <linearGradient id="p" y2="1"><stop stop-color="#5aa9ff"/><stop offset="1" stop-color="#2769ca"/></linearGradient>
+    <linearGradient id="c" y2="1"><stop stop-color="#59deb0"/><stop offset="1" stop-color="#138b6d"/></linearGradient>
+    <linearGradient id="q" x2="1"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#d946ef"/></linearGradient>
+    <filter id="s" x="-15%" y="-20%" width="130%" height="145%"><feDropShadow dy="5" stdDeviation="6" flood-opacity=".3"/></filter>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0v6l9-3z" fill="#91a4c2"/></marker>
+    <style>
+      .t{font:700 29px Inter,Segoe UI,sans-serif;fill:#f8fbff}.st{font:500 15px Inter,Segoe UI,sans-serif;fill:#a9bad3}
+      .h{font:700 17px Inter,Segoe UI,sans-serif;fill:#dbeafe}.l{font:600 14px Inter,Segoe UI,sans-serif;fill:#f8fbff}
+      .sm{font:500 12px Inter,Segoe UI,sans-serif;fill:#c9d7ea}.xs{font:500 10.5px Inter,Segoe UI,sans-serif;fill:#b9cae1}
+      .f{font:600 15px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#f4f7ff}.panel{fill:#111f36;stroke:#304663;stroke-width:1.2}
+      .arrow{stroke:#91a4c2;stroke-width:2;fill:none;marker-end:url(#a)}
+    </style>
+  </defs>
+  <rect width="1160" height="700" rx="22" fill="url(#bg)"/>
+  <text x="46" y="49" class="t">M = 1 scalar kernel</text>
+  <text x="46" y="75" class="st">One output row · 128 consumer threads · FP32 scalar FMA · BF16 store</text>
+
+  <rect x="34" y="100" width="1092" height="150" rx="16" class="panel" filter="url(#s)"/>
+  <text x="56" y="130" class="h">CTA roles: 256 threads = 8 warps</text>
+  <g transform="translate(56 147)">
+    <g fill="url(#p)">
+      <rect width="122" height="58" rx="9"/><rect x="130" width="122" height="58" rx="9" opacity=".45"/>
+      <rect x="260" width="122" height="58" rx="9" opacity=".45"/><rect x="390" width="122" height="58" rx="9" opacity=".45"/>
+    </g>
+    <g fill="url(#c)">
+      <rect x="520" width="122" height="58" rx="9"/><rect x="650" width="122" height="58" rx="9"/>
+      <rect x="780" width="122" height="58" rx="9"/><rect x="910" width="122" height="58" rx="9"/>
+    </g>
+    <g class="l" text-anchor="middle">
+      <text x="61" y="24">Warp 0</text><text x="191" y="33">Warp 1</text><text x="321" y="33">Warp 2</text><text x="451" y="33">Warp 3</text>
+      <text x="581" y="24">Warp 4</text><text x="711" y="24">Warp 5</text><text x="841" y="24">Warp 6</text><text x="971" y="24">Warp 7</text>
+    </g>
+    <text x="61" y="44" text-anchor="middle" class="xs">lane 0: TMA</text>
+    <text x="776" y="44" text-anchor="middle" class="xs">consumer thread t = 0…127</text>
+    <path d="M0 69h512" stroke="#59a7ff" stroke-width="3"/><path d="M520 69h512" stroke="#55d6a5" stroke-width="3"/>
+    <text x="256" y="89" text-anchor="middle" class="sm">producer warp group</text>
+    <text x="776" y="89" text-anchor="middle" class="sm">consumer warp group</text>
+  </g>
+
+  <rect x="34" y="270" width="1092" height="270" rx="16" class="panel" filter="url(#s)"/>
+  <text x="56" y="301" class="h">Thread → output-column ownership</text>
+  <text x="56" y="341" class="l">BN = 128</text>
+  <g transform="translate(174 320)">
+    <rect width="890" height="58" rx="9" fill="#173653" stroke="#4aa8ff"/>
+    <path d="M111 0v58m111 0V0m111 0v58m112 0V0m111 0v58m111 0V0m111 0v58" stroke="#487092"/>
+    <g class="xs" text-anchor="middle">
+      <text x="55" y="21">t 0…15</text><text x="166" y="21">16…31</text><text x="277" y="21">32…47</text><text x="389" y="21">48…63</text>
+      <text x="500" y="21">64…79</text><text x="611" y="21">80…95</text><text x="722" y="21">96…111</text><text x="834" y="21">112…127</text>
+    </g>
+    <text x="445" y="45" text-anchor="middle" class="f">acc[0] → nlocal = t</text>
+  </g>
+  <text x="56" y="425" class="l">BN = 256</text>
+  <g transform="translate(174 398)">
+    <rect width="890" height="47" rx="8" fill="#173653" stroke="#4aa8ff"/>
+    <rect y="54" width="890" height="47" rx="8" fill="#173f36" stroke="#55d6a5"/>
+    <text x="445" y="29" text-anchor="middle" class="f">acc[0] → nlocal = t             (columns 0…127)</text>
+    <text x="445" y="83" text-anchor="middle" class="f">acc[1] → nlocal = t + 128       (columns 128…255)</text>
+  </g>
+  <text x="56" y="520" class="f">nglobal = tile_n · BN + nlocal</text>
+
+  <rect x="34" y="560" width="1092" height="106" rx="16" class="panel" filter="url(#s)"/>
+  <text x="56" y="590" class="h">Shared-stage lifecycle</text>
+  <g transform="translate(237 601)">
+    <rect width="195" height="43" rx="22" fill="#245b96"/><rect x="265" width="195" height="43" rx="22" fill="url(#q)"/>
+    <rect x="530" width="195" height="43" rx="22" fill="#17785f"/>
+    <text x="97" y="27" text-anchor="middle" class="l">TMA fills W and X</text><text x="362" y="27" text-anchor="middle" class="l">consumers compute</text>
+    <text x="627" y="27" text-anchor="middle" class="l">4 warps release</text>
+    <path d="M195 21h60m205 0h60" class="arrow"/>
+    <path d="M725 21c58 0 58-31-45-31H54C12-10 12 0 12 11" class="arrow"/>
+  </g>
+</svg>

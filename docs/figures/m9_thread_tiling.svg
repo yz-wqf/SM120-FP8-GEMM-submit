@@ -1,0 +1,317 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1030" viewBox="0 0 1200 1030" role="img" aria-labelledby="title desc">
+  <title id="title">M equals 9 lane to output element ownership inside one consumer warp</title>
+  <desc id="desc">A sixteen by eight accumulator tile is labeled with the lane that owns each element. Lane four g plus p owns two adjacent columns in rows g and g plus eight.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#25134d"/></linearGradient>
+    <linearGradient id="panel" x2="0" y2="1"><stop stop-color="#14233b"/><stop offset="1" stop-color="#10182d"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-15%" width="120%" height="135%"><feDropShadow dy="5" stdDeviation="6" flood-opacity=".32"/></filter>
+    <style>
+      .title{font:700 29px Inter,Segoe UI,sans-serif;fill:#f8fbff}.subtitle{font:500 15px Inter,Segoe UI,sans-serif;fill:#b9c8df}
+      .heading{font:700 17px Inter,Segoe UI,sans-serif;fill:#e5efff}.label{font:600 13px Inter,Segoe UI,sans-serif;fill:#f8fbff}
+      .small{font:500 11.5px Inter,Segoe UI,sans-serif;fill:#c8d6eb}.tiny{font:600 10.5px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#f8fbff}
+      .mono{font:600 12.5px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#e6efff}
+      .panel{fill:url(#panel);stroke:#405270;stroke-width:1.2}
+    </style>
+  </defs>
+  <rect width="1200" height="1030" rx="24" fill="url(#bg)"/>
+  <text x="42" y="48" class="title">M = 9 thread-to-element ownership</text>
+  <text x="42" y="75" class="subtitle">One consumer warp tile Dq[16,8] · lane = threadIdx.x mod 32 · every lane owns four FP32 accumulators</text>
+
+  <rect x="35" y="98" width="1130" height="700" rx="16" class="panel" filter="url(#shadow)"/>
+  <text x="55" y="129" class="heading">Explicit lane map for all 16×8 accumulator elements</text>
+  <text x="55" y="152" class="small">Columns are local to consumer q; global n = blockIdx.x·BN + 8q + local n.</text>
+    <text x="330" y="172" text-anchor="middle" class="small">local n=0</text>
+    <text x="430" y="172" text-anchor="middle" class="small">local n=1</text>
+    <text x="530" y="172" text-anchor="middle" class="small">local n=2</text>
+    <text x="630" y="172" text-anchor="middle" class="small">local n=3</text>
+    <text x="730" y="172" text-anchor="middle" class="small">local n=4</text>
+    <text x="830" y="172" text-anchor="middle" class="small">local n=5</text>
+    <text x="930" y="172" text-anchor="middle" class="small">local n=6</text>
+    <text x="1030" y="172" text-anchor="middle" class="small">local n=7</text>
+    <text x="270" y="209" text-anchor="end" class="mono">m=0 · g=0 · d0/d1</text>
+    <text x="270" y="239" text-anchor="end" class="mono">m=1 · g=1 · d0/d1</text>
+    <text x="270" y="269" text-anchor="end" class="mono">m=2 · g=2 · d0/d1</text>
+    <text x="270" y="299" text-anchor="end" class="mono">m=3 · g=3 · d0/d1</text>
+    <text x="270" y="329" text-anchor="end" class="mono">m=4 · g=4 · d0/d1</text>
+    <text x="270" y="359" text-anchor="end" class="mono">m=5 · g=5 · d0/d1</text>
+    <text x="270" y="389" text-anchor="end" class="mono">m=6 · g=6 · d0/d1</text>
+    <text x="270" y="419" text-anchor="end" class="mono">m=7 · g=7 · d0/d1</text>
+    <text x="270" y="449" text-anchor="end" class="mono">m=8 · g=0 · d2/d3</text>
+    <text x="270" y="479" text-anchor="end" class="mono">m=9 · g=1 · d2/d3</text>
+    <text x="270" y="509" text-anchor="end" class="mono">m=10 · g=2 · d2/d3</text>
+    <text x="270" y="539" text-anchor="end" class="mono">m=11 · g=3 · d2/d3</text>
+    <text x="270" y="569" text-anchor="end" class="mono">m=12 · g=4 · d2/d3</text>
+    <text x="270" y="599" text-anchor="end" class="mono">m=13 · g=5 · d2/d3</text>
+    <text x="270" y="629" text-anchor="end" class="mono">m=14 · g=6 · d2/d3</text>
+    <text x="270" y="659" text-anchor="end" class="mono">m=15 · g=7 · d2/d3</text>
+    <rect x="280" y="190" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="210" text-anchor="middle" class="tiny">lane 0</text>
+    <rect x="380" y="190" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="210" text-anchor="middle" class="tiny">lane 0</text>
+    <rect x="480" y="190" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="210" text-anchor="middle" class="tiny">lane 1</text>
+    <rect x="580" y="190" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="210" text-anchor="middle" class="tiny">lane 1</text>
+    <rect x="680" y="190" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="210" text-anchor="middle" class="tiny">lane 2</text>
+    <rect x="780" y="190" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="210" text-anchor="middle" class="tiny">lane 2</text>
+    <rect x="880" y="190" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="210" text-anchor="middle" class="tiny">lane 3</text>
+    <rect x="980" y="190" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="210" text-anchor="middle" class="tiny">lane 3</text>
+    <rect x="280" y="220" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="240" text-anchor="middle" class="tiny">lane 4</text>
+    <rect x="380" y="220" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="240" text-anchor="middle" class="tiny">lane 4</text>
+    <rect x="480" y="220" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#fbbf24" stroke-opacity="1" stroke-width="3"/>
+    <text x="530" y="240" text-anchor="middle" class="tiny">lane 5</text>
+    <rect x="580" y="220" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#fbbf24" stroke-opacity="1" stroke-width="3"/>
+    <text x="630" y="240" text-anchor="middle" class="tiny">lane 5</text>
+    <rect x="680" y="220" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="240" text-anchor="middle" class="tiny">lane 6</text>
+    <rect x="780" y="220" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="240" text-anchor="middle" class="tiny">lane 6</text>
+    <rect x="880" y="220" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="240" text-anchor="middle" class="tiny">lane 7</text>
+    <rect x="980" y="220" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="240" text-anchor="middle" class="tiny">lane 7</text>
+    <rect x="280" y="250" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="270" text-anchor="middle" class="tiny">lane 8</text>
+    <rect x="380" y="250" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="270" text-anchor="middle" class="tiny">lane 8</text>
+    <rect x="480" y="250" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="270" text-anchor="middle" class="tiny">lane 9</text>
+    <rect x="580" y="250" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="270" text-anchor="middle" class="tiny">lane 9</text>
+    <rect x="680" y="250" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="270" text-anchor="middle" class="tiny">lane 10</text>
+    <rect x="780" y="250" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="270" text-anchor="middle" class="tiny">lane 10</text>
+    <rect x="880" y="250" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="270" text-anchor="middle" class="tiny">lane 11</text>
+    <rect x="980" y="250" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="270" text-anchor="middle" class="tiny">lane 11</text>
+    <rect x="280" y="280" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="300" text-anchor="middle" class="tiny">lane 12</text>
+    <rect x="380" y="280" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="300" text-anchor="middle" class="tiny">lane 12</text>
+    <rect x="480" y="280" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="300" text-anchor="middle" class="tiny">lane 13</text>
+    <rect x="580" y="280" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="300" text-anchor="middle" class="tiny">lane 13</text>
+    <rect x="680" y="280" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="300" text-anchor="middle" class="tiny">lane 14</text>
+    <rect x="780" y="280" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="300" text-anchor="middle" class="tiny">lane 14</text>
+    <rect x="880" y="280" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="300" text-anchor="middle" class="tiny">lane 15</text>
+    <rect x="980" y="280" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="300" text-anchor="middle" class="tiny">lane 15</text>
+    <rect x="280" y="310" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="330" text-anchor="middle" class="tiny">lane 16</text>
+    <rect x="380" y="310" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="330" text-anchor="middle" class="tiny">lane 16</text>
+    <rect x="480" y="310" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="330" text-anchor="middle" class="tiny">lane 17</text>
+    <rect x="580" y="310" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="330" text-anchor="middle" class="tiny">lane 17</text>
+    <rect x="680" y="310" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="330" text-anchor="middle" class="tiny">lane 18</text>
+    <rect x="780" y="310" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="330" text-anchor="middle" class="tiny">lane 18</text>
+    <rect x="880" y="310" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="330" text-anchor="middle" class="tiny">lane 19</text>
+    <rect x="980" y="310" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="330" text-anchor="middle" class="tiny">lane 19</text>
+    <rect x="280" y="340" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="360" text-anchor="middle" class="tiny">lane 20</text>
+    <rect x="380" y="340" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="360" text-anchor="middle" class="tiny">lane 20</text>
+    <rect x="480" y="340" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="360" text-anchor="middle" class="tiny">lane 21</text>
+    <rect x="580" y="340" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="360" text-anchor="middle" class="tiny">lane 21</text>
+    <rect x="680" y="340" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="360" text-anchor="middle" class="tiny">lane 22</text>
+    <rect x="780" y="340" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="360" text-anchor="middle" class="tiny">lane 22</text>
+    <rect x="880" y="340" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="360" text-anchor="middle" class="tiny">lane 23</text>
+    <rect x="980" y="340" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="360" text-anchor="middle" class="tiny">lane 23</text>
+    <rect x="280" y="370" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="390" text-anchor="middle" class="tiny">lane 24</text>
+    <rect x="380" y="370" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="390" text-anchor="middle" class="tiny">lane 24</text>
+    <rect x="480" y="370" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="390" text-anchor="middle" class="tiny">lane 25</text>
+    <rect x="580" y="370" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="390" text-anchor="middle" class="tiny">lane 25</text>
+    <rect x="680" y="370" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="390" text-anchor="middle" class="tiny">lane 26</text>
+    <rect x="780" y="370" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="390" text-anchor="middle" class="tiny">lane 26</text>
+    <rect x="880" y="370" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="390" text-anchor="middle" class="tiny">lane 27</text>
+    <rect x="980" y="370" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="390" text-anchor="middle" class="tiny">lane 27</text>
+    <rect x="280" y="400" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="420" text-anchor="middle" class="tiny">lane 28</text>
+    <rect x="380" y="400" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="420" text-anchor="middle" class="tiny">lane 28</text>
+    <rect x="480" y="400" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="420" text-anchor="middle" class="tiny">lane 29</text>
+    <rect x="580" y="400" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="420" text-anchor="middle" class="tiny">lane 29</text>
+    <rect x="680" y="400" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="420" text-anchor="middle" class="tiny">lane 30</text>
+    <rect x="780" y="400" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="420" text-anchor="middle" class="tiny">lane 30</text>
+    <rect x="880" y="400" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="420" text-anchor="middle" class="tiny">lane 31</text>
+    <rect x="980" y="400" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="420" text-anchor="middle" class="tiny">lane 31</text>
+    <rect x="280" y="430" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="450" text-anchor="middle" class="tiny">lane 0</text>
+    <rect x="380" y="430" width="100" height="30" fill="#db2777" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="450" text-anchor="middle" class="tiny">lane 0</text>
+    <rect x="480" y="430" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="450" text-anchor="middle" class="tiny">lane 1</text>
+    <rect x="580" y="430" width="100" height="30" fill="#a855f7" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="450" text-anchor="middle" class="tiny">lane 1</text>
+    <rect x="680" y="430" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="450" text-anchor="middle" class="tiny">lane 2</text>
+    <rect x="780" y="430" width="100" height="30" fill="#4f46e5" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="450" text-anchor="middle" class="tiny">lane 2</text>
+    <rect x="880" y="430" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="450" text-anchor="middle" class="tiny">lane 3</text>
+    <rect x="980" y="430" width="100" height="30" fill="#0891b2" opacity=".84" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="450" text-anchor="middle" class="tiny">lane 3</text>
+    <rect x="280" y="460" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="480" text-anchor="middle" class="tiny">lane 4</text>
+    <rect x="380" y="460" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="480" text-anchor="middle" class="tiny">lane 4</text>
+    <rect x="480" y="460" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#fbbf24" stroke-opacity="1" stroke-width="3"/>
+    <text x="530" y="480" text-anchor="middle" class="tiny">lane 5</text>
+    <rect x="580" y="460" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#fbbf24" stroke-opacity="1" stroke-width="3"/>
+    <text x="630" y="480" text-anchor="middle" class="tiny">lane 5</text>
+    <rect x="680" y="460" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="480" text-anchor="middle" class="tiny">lane 6</text>
+    <rect x="780" y="460" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="480" text-anchor="middle" class="tiny">lane 6</text>
+    <rect x="880" y="460" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="480" text-anchor="middle" class="tiny">lane 7</text>
+    <rect x="980" y="460" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="480" text-anchor="middle" class="tiny">lane 7</text>
+    <rect x="280" y="490" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="510" text-anchor="middle" class="tiny">lane 8</text>
+    <rect x="380" y="490" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="510" text-anchor="middle" class="tiny">lane 8</text>
+    <rect x="480" y="490" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="510" text-anchor="middle" class="tiny">lane 9</text>
+    <rect x="580" y="490" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="510" text-anchor="middle" class="tiny">lane 9</text>
+    <rect x="680" y="490" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="510" text-anchor="middle" class="tiny">lane 10</text>
+    <rect x="780" y="490" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="510" text-anchor="middle" class="tiny">lane 10</text>
+    <rect x="880" y="490" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="510" text-anchor="middle" class="tiny">lane 11</text>
+    <rect x="980" y="490" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="510" text-anchor="middle" class="tiny">lane 11</text>
+    <rect x="280" y="520" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="540" text-anchor="middle" class="tiny">lane 12</text>
+    <rect x="380" y="520" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="540" text-anchor="middle" class="tiny">lane 12</text>
+    <rect x="480" y="520" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="540" text-anchor="middle" class="tiny">lane 13</text>
+    <rect x="580" y="520" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="540" text-anchor="middle" class="tiny">lane 13</text>
+    <rect x="680" y="520" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="540" text-anchor="middle" class="tiny">lane 14</text>
+    <rect x="780" y="520" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="540" text-anchor="middle" class="tiny">lane 14</text>
+    <rect x="880" y="520" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="540" text-anchor="middle" class="tiny">lane 15</text>
+    <rect x="980" y="520" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="540" text-anchor="middle" class="tiny">lane 15</text>
+    <rect x="280" y="550" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="570" text-anchor="middle" class="tiny">lane 16</text>
+    <rect x="380" y="550" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="570" text-anchor="middle" class="tiny">lane 16</text>
+    <rect x="480" y="550" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="570" text-anchor="middle" class="tiny">lane 17</text>
+    <rect x="580" y="550" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="570" text-anchor="middle" class="tiny">lane 17</text>
+    <rect x="680" y="550" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="570" text-anchor="middle" class="tiny">lane 18</text>
+    <rect x="780" y="550" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="570" text-anchor="middle" class="tiny">lane 18</text>
+    <rect x="880" y="550" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="570" text-anchor="middle" class="tiny">lane 19</text>
+    <rect x="980" y="550" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="570" text-anchor="middle" class="tiny">lane 19</text>
+    <rect x="280" y="580" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="600" text-anchor="middle" class="tiny">lane 20</text>
+    <rect x="380" y="580" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="600" text-anchor="middle" class="tiny">lane 20</text>
+    <rect x="480" y="580" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="600" text-anchor="middle" class="tiny">lane 21</text>
+    <rect x="580" y="580" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="600" text-anchor="middle" class="tiny">lane 21</text>
+    <rect x="680" y="580" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="600" text-anchor="middle" class="tiny">lane 22</text>
+    <rect x="780" y="580" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="600" text-anchor="middle" class="tiny">lane 22</text>
+    <rect x="880" y="580" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="600" text-anchor="middle" class="tiny">lane 23</text>
+    <rect x="980" y="580" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="600" text-anchor="middle" class="tiny">lane 23</text>
+    <rect x="280" y="610" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="630" text-anchor="middle" class="tiny">lane 24</text>
+    <rect x="380" y="610" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="630" text-anchor="middle" class="tiny">lane 24</text>
+    <rect x="480" y="610" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="630" text-anchor="middle" class="tiny">lane 25</text>
+    <rect x="580" y="610" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="630" text-anchor="middle" class="tiny">lane 25</text>
+    <rect x="680" y="610" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="630" text-anchor="middle" class="tiny">lane 26</text>
+    <rect x="780" y="610" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="630" text-anchor="middle" class="tiny">lane 26</text>
+    <rect x="880" y="610" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="630" text-anchor="middle" class="tiny">lane 27</text>
+    <rect x="980" y="610" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="630" text-anchor="middle" class="tiny">lane 27</text>
+    <rect x="280" y="640" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="330" y="660" text-anchor="middle" class="tiny">lane 28</text>
+    <rect x="380" y="640" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="430" y="660" text-anchor="middle" class="tiny">lane 28</text>
+    <rect x="480" y="640" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="530" y="660" text-anchor="middle" class="tiny">lane 29</text>
+    <rect x="580" y="640" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="630" y="660" text-anchor="middle" class="tiny">lane 29</text>
+    <rect x="680" y="640" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="730" y="660" text-anchor="middle" class="tiny">lane 30</text>
+    <rect x="780" y="640" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="830" y="660" text-anchor="middle" class="tiny">lane 30</text>
+    <rect x="880" y="640" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="930" y="660" text-anchor="middle" class="tiny">lane 31</text>
+    <rect x="980" y="640" width="100" height="30" fill="#3e4a5d" opacity=".90" stroke="#d8e5f7" stroke-opacity=".28" stroke-width="1"/>
+    <text x="1030" y="660" text-anchor="middle" class="tiny">lane 31</text>
+
+  <path d="M280 460h800" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="8 5"/>
+  <text x="1095" y="455" class="small">store boundary</text>
+
+  <text x="55" y="710" class="mono">g = lane >> 2        p = lane &amp; 3        lane = 4g+p</text>
+  <text x="55" y="738" class="mono">d0 → (g,2p)   d1 → (g,2p+1)   d2 → (g+8,2p)   d3 → (g+8,2p+1)</text>
+  <text x="55" y="768" class="small">For M=9, d0 and d1 are always stored. d2 and d3 are stored only when g=0, which corresponds to logical row 8.</text>
+
+  <rect x="35" y="820" width="1130" height="170" rx="16" class="panel" filter="url(#shadow)"/>
+  <text x="55" y="851" class="heading">Example: lane 5</text>
+  <text x="55" y="878" class="mono">lane 5: g=1, p=1</text>
+  <text x="55" y="905" class="mono">d0 → Dq[1,2]   d1 → Dq[1,3]   d2 → Dq[9,2]   d3 → Dq[9,3]</text>
+  <text x="55" y="934" class="small">M=9 epilogue: Dq[1,2] and Dq[1,3] are stored; Dq[9,2] and Dq[9,3] are discarded.</text>
+  <text x="55" y="963" class="mono">global columns for local 2,3 = blockIdx.x·BN + 8q + {2,3}</text>
+</svg>

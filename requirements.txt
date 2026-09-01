@@ -1,0 +1,6 @@
+--extra-index-url https://download.pytorch.org/whl/cu130
+
+# Tested submission environment. The +cu130 pin prevents pip from silently
+# selecting a CPU-only or CUDA-major-mismatched PyTorch build.
+torch==2.13.0+cu130
+ninja>=1.11
